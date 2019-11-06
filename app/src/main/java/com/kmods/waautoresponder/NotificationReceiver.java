@@ -61,14 +61,16 @@ public class NotificationReceiver extends NotificationListenerService {
                                     Object title = bundle.get("android.title");//Chat Title
                                     Object text = bundle.get("android.text");//Chat Text
 
+                                    String sText = String.valueOf(text);
+
                                     if(title != null && text != null) {
                                         //Common Replies
-                                        if (text.equals("Hola")) {
-                                            sendMsg("*KP's Bot Commands* :-\n\n@emailkp - to get my official EMail Address.\n\n@webkp - to get my offical website link.");
-                                        } else if (text.equals("@emailkp")) {
-                                            sendMsg("*KP's Official EMail* :- \n\npatel.kuldip91@gmail.com");
+                                        if (sText.indexOf("Hola") == 0) {
+                                            sendMsg("Hoy es un buen día para ser productivo");
+                                        } else if (text.equals("@Problem")) {
+                                            sendMsg("¿Cuál es tu problema?");
                                         } else if (text.equals("Y")) {
-                                            sendMsg("*KP's Official Website* :- \n\nhttps://kuldippatel.dev");
+                                            sendMsg("Acabas de escribir la letra " + text);
                                         }
 
                                         //Group Specific Replies
