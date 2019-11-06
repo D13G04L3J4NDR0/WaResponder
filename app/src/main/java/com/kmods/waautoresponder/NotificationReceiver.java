@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.provider.Settings;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
@@ -32,6 +33,12 @@ public class NotificationReceiver extends NotificationListenerService {
     SharedPreferences sharedPreferences;
 
     @Override
+    public IBinder onBind(Intent intent) {
+
+        return super.onBind(intent);
+    }
+
+    @Override
     public void onNotificationPosted(final StatusBarNotification sbn) {
         //super.onNotificationPosted(sbn); //Not Needed
         if(Settings.Secure.getString(getContentResolver(),"enabled_notification_listeners").contains(getPackageName())// Check for Notification Permission
@@ -56,11 +63,11 @@ public class NotificationReceiver extends NotificationListenerService {
 
                                     if(title != null && text != null) {
                                         //Common Replies
-                                        if (text.equals("@helpkp")) {
+                                        if (text.equals("Hola")) {
                                             sendMsg("*KP's Bot Commands* :-\n\n@emailkp - to get my official EMail Address.\n\n@webkp - to get my offical website link.");
                                         } else if (text.equals("@emailkp")) {
                                             sendMsg("*KP's Official EMail* :- \n\npatel.kuldip91@gmail.com");
-                                        } else if (text.equals("@webkp")) {
+                                        } else if (text.equals("Y")) {
                                             sendMsg("*KP's Official Website* :- \n\nhttps://kuldippatel.dev");
                                         }
 
